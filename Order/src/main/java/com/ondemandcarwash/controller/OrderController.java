@@ -1,7 +1,7 @@
 package com.ondemandcarwash.controller;
 
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,10 +36,16 @@ public class OrderController {
 	}
 
 	// Reading all washer
-	@GetMapping("/allorders")
+	@GetMapping("/allorder")
 	public List<Order> getOrder() {
 		return orderRepository.findAll();
 	}
+	// Reading Order by id
+			@GetMapping("/order/{id}")
+			public Optional<Order> getCustomerById(@PathVariable int id)  {
+				return orderRepository.findById(id);
+						
+			}
 
 	// Deleting order by Id
 	@DeleteMapping("/delete/{id}")
@@ -50,4 +56,5 @@ public class OrderController {
 		
 
 	}
-	}}
+	}
+}

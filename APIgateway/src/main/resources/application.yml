@@ -23,3 +23,7 @@ spring:
         uri: http://localhost:8085/
         predicates:
         - Path=/washer/**
+      - id: 
+        uri: http://localhost:8084/
+        predicates:
+        - Path=/payment/**
