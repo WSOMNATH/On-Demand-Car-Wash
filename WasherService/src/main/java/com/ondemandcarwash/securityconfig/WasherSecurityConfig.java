@@ -57,3 +57,4 @@ public class WasherSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 }
+
