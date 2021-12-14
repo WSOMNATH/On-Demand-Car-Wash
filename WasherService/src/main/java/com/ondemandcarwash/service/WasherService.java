@@ -1,20 +1,16 @@
 package com.ondemandcarwash.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
- import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
 import com.ondemandcarwash.model.Washer;
 import com.ondemandcarwash.repository.WasherRepository;
 
 
 @Service
-public class WasherService implements UserDetailsService {
+public class WasherService {
 	
 	@Autowired
 	private WasherRepository washerRepository;
@@ -38,13 +34,9 @@ public class WasherService implements UserDetailsService {
 		washerRepository.deleteById(id);
 		
 	}
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Washer foundedWasher = washerRepository.findBywEmail(username);
-		
-		if  (foundedWasher ==null) return null;
-		String wEmail = foundedWasher.getwEmail();
-		String wPassword = foundedWasher.getwPassword();
-		return new User(wEmail, wPassword, new ArrayList<>());
+	
+	public void deleteWasher(Washer washer) {
+		washerRepository.delete(washer);
 	}
+	
 }

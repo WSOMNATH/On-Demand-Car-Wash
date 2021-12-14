@@ -42,64 +42,56 @@
 		@Autowired
 		private RestTemplate restTemplate;
 	
-	//Creating/ADDING Customer
+//Creating/ADDING Customer
 		@PostMapping("/addcustomer")
 		public Customer saveCustomer(@RequestBody Customer customer) 
 		{
 		return customerService.addCustomer(customer);
-	
 		}
 	
-	//Reading all Customer 
+//Reading all Customer 
 		@GetMapping("/allcustomer")
 		public List<Customer> findAllCustomers()
 		{
 		return customerService.getCustomers();
-		
-		}
+	    }
 	
-	//Reading Customer by ID
+//Reading Customer by ID
 		@GetMapping("/allcustomer/{id}")
 		public Optional<Customer> getCustomerById(@PathVariable int id)
 		{
 		return customerRepository.findById(id);
-				
-		}
+	    }
 	
 	
-	//Updating Customer Data by Id
+//Updating Customer Data by Id
 		@PutMapping("/update/{id}")
 		public ResponseEntity<Object> updateCustomer(@PathVariable int id, @RequestBody Customer customer)
 		{
-	
 		{
     	 customerRepository.save(customer);
 			return new ResponseEntity<Object>("user updated successfully with id " +id, HttpStatus.OK);
 		}
-		
-		
 		}
 	
-	// Deleting Customer Data by Id 
+// Deleting Customer Data by Id 
 		@DeleteMapping("/delete/{id}")
 		public ResponseEntity<Object> deleteCustomer (@PathVariable int id)
 		{
-		
-		 {
 			customerService.deleteById(id);
 			return new ResponseEntity<Object>("user deleted with id"+id,HttpStatus.OK);
-		 }
+	    }
 		
-		}
+		
 
-	// For Adding Order
+// For Adding Order
 		@PostMapping("/addorder")
 		public String addOrder (@RequestBody Order order)
 		{
 		return restTemplate.postForObject("http://localhost:8083/order/addorder", order , String.class);
 		}
 
-	// for Deleting Order
+// for Deleting Order
 		@DeleteMapping("/cancelorder/{id}")
 		public String deleteorder(@PathVariable("id") int id)
 		{
@@ -109,7 +101,7 @@
 	
 	
 
-	//Reading all washpacks
+//Reading all washpacks
 	@GetMapping("/allpacks")
 	public List<WashPacks> getallpack()
 		{
@@ -117,20 +109,17 @@
 		WashPacks[] allwashpack=restTemplate.getForObject(baseurl, WashPacks[].class);
 		return Arrays.asList(allwashpack);
 		}
-	//For adding ratings
+//For adding ratings
 	@PostMapping("/addrating")
 		public String addrating(@RequestBody Ratings rating)
 		{
 		return restTemplate.postForObject("http://localhost:8081/admin/addrating", rating , String.class);
 	}
-	//customer making an payment
+//customer making an payment
 	 @PostMapping("/payment")
 	 public String payment(@RequestBody Payments payment) {
-		 
-	      
-	      return restTemplate.postForObject("http://localhost:8084/payment/pay",payment, String.class);
-	        
+	 return restTemplate.postForObject("http://localhost:8084/payment/pay",payment, String.class);
+	  }
 	 
-	   
-}
+	 
 }

@@ -33,5 +33,9 @@ public class CustomerService {
 		
 	}
 	
+	public void deleteCustomer(Customer customer) {
+		customerRepository.delete(customer);
+	}
+	
 	
 }

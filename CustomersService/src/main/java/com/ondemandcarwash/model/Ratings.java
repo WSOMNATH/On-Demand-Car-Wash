@@ -2,6 +2,9 @@ package com.ondemandcarwash.model;
 
 
 
+
+
+
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -10,47 +13,61 @@ import org.springframework.data.annotation.Id;
 @Document(collection="Ratings")
 public class Ratings {
 	
+	
+	
 	@Id
-	
-	//@NotEmpty(message = "Rating must not be empty")
+	int washerId;
 	int rating;
-	
-	//@NotEmpty(message = "Name must not be empty")
-	String washerName;
-	String comment;
+	String Review;
 	
 	
 	public Ratings() {
 		
 	}
-	public Ratings(int rating, String washerName, String comment) {
+
+
+	public Ratings(int washerId, int rating, String review) {
 		super();
+		this.washerId = washerId;
 		this.rating = rating;
-		this.washerName = washerName;
-		this.comment = comment;
+		Review = review;
 	}
+
+
+	public int getWasherId() {
+		return washerId;
+	}
+
+
+	public void setWasherId(int washerId) {
+		this.washerId = washerId;
+	}
+
+
 	public int getRating() {
 		return rating;
 	}
+
+
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-	public String getWasherName() {
-		return washerName;
+
+
+	public String getReview() {
+		return Review;
 	}
-	public void setWasherName(String washerName) {
-		this.washerName = washerName;
+
+
+	public void setReview(String review) {
+		Review = review;
 	}
-	public String getComment() {
-		return comment;
-	}
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-	
+
+
 	@Override
 	public String toString() {
-		return "RatingDetails [rating=" + rating + ", washerName=" + washerName + ", comment=" + comment + "]";
+		return "Ratings [washerId=" + washerId + ", rating=" + rating + ", Review=" + Review + "]";
 	}
+	
 	
 }

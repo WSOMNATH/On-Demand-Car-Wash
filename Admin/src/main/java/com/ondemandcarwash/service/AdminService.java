@@ -39,5 +39,11 @@ adminRepository.deleteById(id);
 
 }
 
+//detete all admin
+
+public void deleteAdmin(Admin admin) {
+	adminRepository.delete(admin);
+}
+
 
 }
